@@ -1,0 +1,51 @@
+##
+Dumper
+##
+Mode DO_NOTHING
+End Mode
+Mode MODE_1
+driveToWP (defaultProps,24,0)
+driveToWP (defaultProps,0,90)
+End Mode
+Mode FENCE
+autoLiftLock (robotLiftLock,IN)
+timeout (500)
+autoLiftLock (robotLiftLock,OUT)
+driveToWP (defaultProps,52,0)
+driveToWP (defaultProps,0,90)
+driveToWP (defaultProps,-18,0)
+driveToWP (defaultProps,30,0)
+driveToWP (defaultProps,0,-30)
+driveToWP (defaultProps,18,0)
+driveToWP (defaultProps,0,30)
+driveToWP (defaultProps,18,0)
+driveToWP (defaultProps,0,-30)
+driveToWP (defaultProps,36,0)
+End Mode
+Mode RAM
+autoLiftLock (robotLiftLock,IN)
+timeout (500)
+autoLiftLock (robotLiftLock,OUT)
+{
+autoDumper (robotDumper,DUMPER_AUTO_HEIGHT) &&
+driveToWP (defaultProps,54,0) ||
+timeout (6000)
+}
+driveToWP (defaultProps,-24,0)
+driveToWP (defaultProps,0,-25)
+driveToWP (defaultProps,24,0)
+driveToWP (defaultProps,0,-20)
+{
+driveToWP (defaultProps,12,0) ||
+timeout (2000)
+}
+driveToWP (defaultProps,-24,0)
+driveToWP (defaultProps,0,-135)
+{
+driveToWP (defaultProps,-20,0) &&
+autoDumper (robotDumper,DUMPER_HIGH) ||
+timeout (4000)
+}
+timeout (2000)
+autoDumper (robotDumper, DUMPER_AUTO_HEIGHT)
+End Mode
