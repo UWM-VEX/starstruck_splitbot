@@ -42,24 +42,6 @@ void operatorControl()
 		tankDrive(robotDrive, OIGetDriveLeft(), OIGetDriveRight());
 		dumperTeleop(robotDumper);
 
-		if(OIGetAntiTipIn())
-		{
-			antiTippersIn(robotAntiTippers);
-		}
-		else if(OIGetAntiTipOut())
-		{
-			antiTippersOut(robotAntiTippers);
-		}
-
-		if(OIGetLiftLockIn())
-		{
-			liftLockIn(robotLiftLock);
-		}
-		else if(OIGetLiftLockOut())
-		{
-			liftLockOut(robotLiftLock);
-		}
-
 		delay(25);
 	}
 }

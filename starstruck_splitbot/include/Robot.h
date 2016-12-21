@@ -16,7 +16,5 @@
 
 Drive robotDrive;
 Dumper * robotDumper;
-AntiTippers * robotAntiTippers;
-LiftLock * robotLiftLock;
 
 #endif /* INCLUDE_ROBOT_H_ */
