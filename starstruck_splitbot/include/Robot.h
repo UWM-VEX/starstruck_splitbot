@@ -14,7 +14,9 @@
 #define IN 0
 #define OUT 1
 
-Drive robotDrive;
-Dumper * robotDumper;
+Drive bigDrive;
+Dumper * bigDumper;
+Drive smallDrive;
+Claw * smallClaw;
 
 #endif /* INCLUDE_ROBOT_H_ */

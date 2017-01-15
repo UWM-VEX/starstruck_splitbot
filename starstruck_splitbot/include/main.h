@@ -51,6 +51,7 @@
 #include "Pot.h"
 #include "Drive.h"
 #include "Dumper.h"
+#include "Claw.h"
 #include "Robot.h"
 #include "Auto.h"
 #include "DriveToWP.h"

@@ -96,83 +96,17 @@ int globalTimeout;
 DriveToWPProperties *defaultProps;
 // START OF DECLARATIONS
 
-DriveToWP * command1;
-DriveToWP * command2;
-
-Timeout * command3;
-DriveToWP * command4;
-DriveToWP * command5;
-DriveToWP * command6;
-DriveToWP * command7;
-DriveToWP * command8;
-DriveToWP * command9;
-DriveToWP * command10;
-DriveToWP * command11;
-DriveToWP * command12;
-DriveToWP * command13;
-
-Timeout * command14;
-DriveToWP * command15;
-DriveToWP * command16;
-DriveToWP * command17;
-DriveToWP * command18;
-DriveToWP * command19;
-Timeout * command20;
-
-DriveToWP * command21;
-DriveToWP * command22;
-DriveToWP * command23;
-Timeout * command24;
-
-Timeout * command25;
-AutoDumper * command26;
-
 // END OF DECLARATIONS
 
 void autonomousInit()
 {
-	defaultProps = initDriveToWPProperties(robotDrive, 0.5, 18, 500, 100, 40, 2, 40,
-			70, 40, 3.25, 1, 500);
+	defaultProps = initDriveToWPProperties(bigDrive,
+				0.5, 18, 500, 100, 30, // MAG
+				0.5, 18, 500, 100, 40, // DIR
+				2, 40, 70, 40, 4.25, 1, 500); //ROT
 	// START OF INSTANTIATIONS
 if(autonomousSelection == DO_NOTHING)
 {
-}
-if(autonomousSelection == MODE_1)
-{
-	command1 = initDriveToWP(defaultProps,24,0);
-	command2 = initDriveToWP(defaultProps,0,90);
-}
-if(autonomousSelection == FENCE)
-{
-	command3 = initTimeout(500);
-	command4 = initDriveToWP(defaultProps,52,0);
-	command5 = initDriveToWP(defaultProps,0,90);
-	command6 = initDriveToWP(defaultProps,-18,0);
-	command7 = initDriveToWP(defaultProps,30,0);
-	command8 = initDriveToWP(defaultProps,0,-30);
-	command9 = initDriveToWP(defaultProps,18,0);
-	command10 = initDriveToWP(defaultProps,0,30);
-	command11 = initDriveToWP(defaultProps,18,0);
-	command12 = initDriveToWP(defaultProps,0,-30);
-	command13 = initDriveToWP(defaultProps,36,0);
-}
-if(autonomousSelection == RAM)
-{
-	command14 = initTimeout(500);
-	command15 = initDriveToWP(defaultProps,-24,0);
-	command16 = initDriveToWP(defaultProps,0,-25);
-	command17 = initDriveToWP(defaultProps,24,0);
-	command18 = initDriveToWP(defaultProps,0,-20);
-	command19 = initDriveToWP(defaultProps,12,0);
-	command20 = initTimeout(2000);
-
-	command21 = initDriveToWP(defaultProps,-24,0);
-	command22 = initDriveToWP(defaultProps,0,-135);
-	command23 = initDriveToWP(defaultProps,-20,0);
-	command24 = initTimeout(4000);
-
-	command25 = initTimeout(2000);
-	command26 = initAutoDumper(robotDumper,DUMPER_AUTO_HEIGHT);
 }
 	// END OF INSTANTIATIONS
 	/**
@@ -210,156 +144,6 @@ void autonomousPeriodic()
 		case(DO_NOTHING):
 		switch(autonomousInfo.step)
 		{
-
-
-			default:
-				isAuto = 0;
-				break;
-		}
-		break;
-		case(MODE_1):
-		switch(autonomousInfo.step)
-		{
-			case(1):
-				driveToWP(command1);
-
-				autonomousInfo.isFinished = (*command1).isFinished;
-				break;
-			case(2):
-				driveToWP(command2);
-
-				autonomousInfo.isFinished = (*command2).isFinished;
-				break;
-
-
-			default:
-				isAuto = 0;
-				break;
-		}
-		break;
-		case(FENCE):
-		switch(autonomousInfo.step)
-		{
-			case(1):
-				timeout(command3);
-
-				autonomousInfo.isFinished = (*command3).isFinished;
-				break;
-			case(2):
-				driveToWP(command4);
-
-				autonomousInfo.isFinished = (*command4).isFinished;
-				break;
-			case(3):
-				driveToWP(command5);
-
-				autonomousInfo.isFinished = (*command5).isFinished;
-				break;
-			case(4):
-				driveToWP(command6);
-
-				autonomousInfo.isFinished = (*command6).isFinished;
-				break;
-			case(5):
-				driveToWP(command7);
-
-				autonomousInfo.isFinished = (*command7).isFinished;
-				break;
-			case(6):
-				driveToWP(command8);
-
-				autonomousInfo.isFinished = (*command8).isFinished;
-				break;
-			case(7):
-				driveToWP(command9);
-
-				autonomousInfo.isFinished = (*command9).isFinished;
-				break;
-			case(8):
-				driveToWP(command10);
-
-				autonomousInfo.isFinished = (*command10).isFinished;
-				break;
-			case(9):
-				driveToWP(command11);
-
-				autonomousInfo.isFinished = (*command11).isFinished;
-				break;
-			case(10):
-				driveToWP(command12);
-
-				autonomousInfo.isFinished = (*command12).isFinished;
-				break;
-			case(11):
-				driveToWP(command13);
-
-				autonomousInfo.isFinished = (*command13).isFinished;
-				break;
-
-
-			default:
-				isAuto = 0;
-				break;
-		}
-		break;
-		case(RAM):
-		switch(autonomousInfo.step)
-		{
-			case(1):
-				timeout(command14);
-
-				autonomousInfo.isFinished = (*command14).isFinished;
-				break;
-			case(2):
-				driveToWP(command15);
-
-				autonomousInfo.isFinished = (*command15).isFinished;
-				break;
-			case(3):
-				driveToWP(command16);
-
-				autonomousInfo.isFinished = (*command16).isFinished;
-				break;
-			case(4):
-				driveToWP(command17);
-
-				autonomousInfo.isFinished = (*command17).isFinished;
-				break;
-			case(5):
-				driveToWP(command18);
-
-				autonomousInfo.isFinished = (*command18).isFinished;
-				break;
-			case(6):
-				driveToWP(command19);
-				timeout(command20);
-				autonomousInfo.isFinished = (*command19).isFinished || (*command20).isFinished;
-				break;
-			case(7):
-				driveToWP(command21);
-
-				autonomousInfo.isFinished = (*command21).isFinished;
-				break;
-			case(8):
-				driveToWP(command22);
-
-				autonomousInfo.isFinished = (*command22).isFinished;
-				break;
-			case(9):
-				driveToWP(command23);
-				timeout(command24);
-				autonomousInfo.isFinished = (*command23).isFinished && (*command24).isFinished;
-				break;
-			case(10):
-				timeout(command25);
-
-				autonomousInfo.isFinished = (*command25).isFinished;
-				break;
-			case(11):
-				autoDumper(command26);
-
-				autonomousInfo.isFinished = (*command26).isFinished;
-				break;
 
 
 			default:

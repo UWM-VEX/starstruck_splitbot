@@ -33,9 +33,6 @@ int alliance;
 
 // START OF MODES
 #define DO_NOTHING 0
-#define MODE_1 1
-#define FENCE 2
-#define RAM 3
 // END OF MODES
 
 int autonomousSelection;

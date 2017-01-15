@@ -127,25 +127,10 @@ void dumperTeleop(Dumper * dumper)
 			dumper->mode = DUMPER_AUTO;
 			dumper->height = DUMPER_LOW;
 		}
-		else if(OIGetDumperTravel())
-		{
-			dumper->mode = DUMPER_AUTO;
-			dumper->height = DUMPER_TRAVEL;
-		}
 		else if(OIGetDumperHigh())
 		{
 			dumper->mode = DUMPER_AUTO;
 			dumper->height = DUMPER_HIGH;
-		}
-		else if(OIGetDumperDump())
-		{
-			dumper->mode = DUMPER_AUTO;
-			dumper->height = DUMPER_DUMP;
-		}
-		else if(OIGetDumperHang())
-		{
-			dumper->mode = DUMPER_AUTO;
-			dumper->height = DUMPER_HANG;
 		}
 	}
 

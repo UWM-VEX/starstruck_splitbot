@@ -9,12 +9,12 @@
 
 int OIGetDriveLeft()
 {
-	return joystickGetAnalog(1, 3);
+	return joystickGetAnalog(2, 3);
 }
 
 int OIGetDriveRight()
 {
-	return joystickGetAnalog(1, 2);
+	return joystickGetAnalog(2, 2);
 }
 
 int OIGetDriveY()
@@ -25,6 +25,21 @@ int OIGetDriveY()
 int OIGetDriveX()
 {
 	return joystickGetAnalog(1, 4);
+}
+
+int OIGetDriveMagnitude()
+{
+	return joystickGetAnalog(1, 3);
+}
+
+int OIGetDriveDirection()
+{
+	return joystickGetAnalog(1, 4);
+}
+
+int OIGetDriveRotation()
+{
+	return joystickGetAnalog(1, 1);
 }
 
 int OIGetDumper()
@@ -49,49 +64,25 @@ int OIGetDumperLow()
 			joystickGetDigital(1, 7, JOY_DOWN);
 }
 
-int OIGetDumperTravel()
-{
-	return joystickGetDigital(2, 7, JOY_LEFT) ||
-			joystickGetDigital(1, 7, JOY_LEFT);
-}
-
 int OIGetDumperHigh()
 {
 	return joystickGetDigital(2, 7, JOY_UP) ||
 			joystickGetDigital(1, 7, JOY_UP);
 }
 
-int OIGetDumperDump()
+int OIGetClawManual()
 {
-	return joystickGetDigital(2, 5, JOY_UP) && joystickGetDigital(2, 6, JOY_UP);
+	return joystickGetAnalog(2,1);
 }
 
-int OIGetDumperHang()
+int OIGetClawOpen()
 {
-	return joystickGetDigital(2, 8, JOY_RIGHT) ||
-			joystickGetDigital(1, 8, JOY_RIGHT);
+	return joystickGetDigital(1,5,JOY_UP) ||
+			joystickGetDigital(2,5,JOY_UP);
 }
 
-int OIGetAntiTipIn()
+int OIGetClawClose()
 {
-	return joystickGetDigital(1, 8, JOY_DOWN) ||
-			joystickGetDigital(2, 8, JOY_DOWN);
-}
-
-int OIGetAntiTipOut()
-{
-	return joystickGetDigital(1, 8, JOY_UP) ||
-			joystickGetDigital(2, 8, JOY_UP);
-}
-
-int OIGetLiftLockIn()
-{
-	return joystickGetDigital(1, 8, JOY_LEFT) ||
-			joystickGetDigital(2, 8, JOY_LEFT);
-}
-
-int OIGetLiftLockOut()
-{
-	return joystickGetDigital(1, 7, JOY_RIGHT) ||
-			joystickGetDigital(2, 7, JOY_RIGHT);
+	return joystickGetDigital(1,6,JOY_UP) ||
+			joystickGetDigital(2,6,JOY_UP);
 }
