@@ -17,11 +17,5 @@ int OIGetDriveDirection();
 int OIGetDriveRotation();
 int OIGetDriveY();
 int OIGetDriveX();
-int OIGetDumper();
-int OIGetDumperLow();
-int OIGetDumperHigh();
-int OIGetClawManual();
-int OIGetClawOpen();
-int OIGetClawClose();
 
 #endif /* INCLUDE_OI_H_ */

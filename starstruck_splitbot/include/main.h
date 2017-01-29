@@ -47,15 +47,10 @@
 #include "OI.h"
 #include "PantherMotor.h"
 #include "Utilities.h"
-#include "PIDController.h"
-#include "Pot.h"
 #include "Drive.h"
-#include "Dumper.h"
-#include "Claw.h"
 #include "Robot.h"
 #include "Auto.h"
 #include "DriveToWP.h"
-#include "AutoDumper.h"
 #include "Timeout.h"
 
 

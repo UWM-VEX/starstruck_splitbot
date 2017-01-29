@@ -41,8 +41,6 @@ void operatorControl()
 	{
 		holonomicDrive(bigDrive, OIGetDriveMagnitude(), OIGetDriveDirection(), OIGetDriveRotation());
 		tankDrive(smallDrive, OIGetDriveLeft(), OIGetDriveRight());
-		dumperTeleop(bigDumper);
-		clawTeleop(smallClaw);
 
 		delay(25);
 	}

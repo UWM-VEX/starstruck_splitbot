@@ -15,8 +15,6 @@
 #define OUT 1
 
 Drive bigDrive;
-Dumper * bigDumper;
 Drive smallDrive;
-Claw * smallClaw;
 
 #endif /* INCLUDE_ROBOT_H_ */
