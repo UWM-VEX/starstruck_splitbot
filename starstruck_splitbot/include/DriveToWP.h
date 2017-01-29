@@ -47,10 +47,8 @@ struct DriveToWP {
 	int reachedRotation;
 	unsigned long timeAchievedGoodLocation;
 	int isFirstTime;
-	int firstFrontLeftEncoder;
-	int firstRearLeftEncoder;
-	int firstFrontRightEncoder;
-	int firstRearRightEncoder;
+	int firstLeftEncoder;
+	int firstRightEncoder;
 	int firstGyro;
 
 } typedef DriveToWP;

@@ -21,12 +21,9 @@ struct Drive{
 	PantherMotor middleRightMotor;
 	PantherMotor rearLeftMotor;
 	PantherMotor rearRightMotor;
-	Encoder frontLeftEncoder;
-	Encoder frontRightEncoder;
-	Encoder rearLeftEncoder;
-	Encoder rearRightEncoder;
+	Encoder leftEncoder;
+	Encoder rightEncoder;
 	Gyro gyro;
-	int numEncoders;
 	int numMotors;
 
 }typedef Drive;
@@ -34,9 +31,7 @@ struct Drive{
 Drive initDrive(PantherMotor frontLeftMotor, PantherMotor frontRightMotor,
 		PantherMotor middleLeftMotor, PantherMotor middleRightMotor,
 		PantherMotor rearLeftMotor, PantherMotor rearRightMotor,
-		Encoder frontLeftEncoder, Encoder frontRightEncoder,
-		Encoder rearLeftEncoder, Encoder rearRightEncoder, Gyro gyro, int numMotors,
-		int numEncoders);
+		Encoder leftEncoder, Encoder rightEncoder, Gyro gyro, int numMotors);
 void holonomicDrive(Drive drive, int magnitude, int direction, int rotation);
 void tankDrive(Drive drive, int left, int right);
 void arcadeDrive(Drive drive, int magnitude, int rotation);

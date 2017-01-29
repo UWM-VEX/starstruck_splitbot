@@ -59,10 +59,8 @@ void driveToWP(DriveToWP * step)
 {
 	if(step->isFirstTime)
 	{
-		step->firstFrontLeftEncoder = encoderGet(step->properties->drive.frontLeftEncoder);
-		step->firstRearLeftEncoder = encoderGet(step->properties->drive.rearLeftEncoder);
-		step->firstFrontRightEncoder = encoderGet(step->properties->drive.frontRightEncoder);
-		step->firstRearRightEncoder = encoderGet(step->properties->drive.rearRightEncoder);
+		step->firstLeftEncoder = encoderGet(step->properties->drive.leftEncoder);
+		step->firstRightEncoder = encoderGet(step->properties->drive.rightEncoder);
 		step->firstGyro = gyroGet(step->properties->drive.gyro);
 		step->isFirstTime = 0;
 	}
@@ -70,22 +68,14 @@ void driveToWP(DriveToWP * step)
 	//lcdPrint(uart1, 1, "FR: %d", encoderGet(step->properties->drive.frontRightEncoder));
 	//lcdPrint(uart1, 2, "RR: %d", encoderGet(step->properties->drive.rearRightEncoder));
 
-	double averageMagEncoder = ((double)((encoderGet(step->properties->drive.frontLeftEncoder)
-			- step->firstFrontLeftEncoder) +
-			(encoderGet(step->properties->drive.rearLeftEncoder)
-						- step->firstRearLeftEncoder)
-			+ (encoderGet(step->properties->drive.frontRightEncoder)
-					- step->firstFrontRightEncoder) +
-			(encoderGet(step->properties->drive.rearRightEncoder)
-						- step->firstRearRightEncoder)) / 2);
-	double averageDirEncoder = ((double)((encoderGet(step->properties->drive.frontLeftEncoder)
-				- step->firstFrontLeftEncoder) -
-				(encoderGet(step->properties->drive.rearLeftEncoder)
-							- step->firstRearLeftEncoder)
-				- (encoderGet(step->properties->drive.frontRightEncoder)
-						- step->firstFrontRightEncoder) +
-				(encoderGet(step->properties->drive.rearRightEncoder)
-							- step->firstRearRightEncoder)) / 2);
+	double averageMagEncoder = ((double)((encoderGet(step->properties->drive.leftEncoder)
+			- step->firstLeftEncoder)
+			+ (encoderGet(step->properties->drive.rightEncoder)
+					- step->firstRightEncoder)) / 2);
+	double averageDirEncoder = ((double)((encoderGet(step->properties->drive.leftEncoder)
+				- step->firstLeftEncoder) -
+				- (encoderGet(step->properties->drive.rightEncoder)
+						- step->firstRightEncoder)) / 2);
 	double distancePV = encoderToInches(averageMagEncoder,
 			step->properties->wheelDiameter);
 	double directionPV = encoderToInches(averageDirEncoder,
@@ -299,6 +289,16 @@ void driveToWP(DriveToWP * step)
 	{
 		rotation = limit(rotation, step->properties->rotationMaxSpeed,
 				step->properties->rotationMinSpeed);
+	}
+
+	if(absDouble(step->distance) < 0.5)
+	{
+		magnitude = 0;
+	}
+
+	if(absDouble(step->direction) > 0.5)
+	{
+		direction = 0;
 	}
 
 	if(distanceError < 0)

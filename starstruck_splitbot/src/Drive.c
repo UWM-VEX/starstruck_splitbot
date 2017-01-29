@@ -4,22 +4,15 @@
  * Initializes a new drive object composed of six PantherMotors, two encoders and a gyro.
  */
 Drive initDrive(PantherMotor frontLeftMotor, PantherMotor frontRightMotor,
+		PantherMotor middleLeftMotor, PantherMotor middleRightMotor,
 		PantherMotor rearLeftMotor, PantherMotor rearRightMotor,
-		Encoder frontLeftEncoder, Encoder frontRightEncoder,
-		Encoder rearLeftEncoder, Encoder rearRightEncoder, Gyro gyro, int numMotors,
-		int numEncoders)
+		Encoder leftEncoder, Encoder rightEncoder, Gyro gyro, int numMotors)
 {
 	Drive newDrive = {frontLeftMotor, frontRightMotor,
+			middleLeftMotor, middleRightMotor,
 			rearLeftMotor, rearRightMotor,
-			frontLeftEncoder, frontRightEncoder,
-			rearLeftEncoder, rearRightEncoder,
-			gyro, numEncoders, numMotors};
-
-	if(numEncoders == 2)
-	{
-		encoderShutdown(rearLeftEncoder);
-		encoderShutdown(rearRightEncoder);
-	}
+			leftEncoder, rightEncoder,
+			gyro, numMotors};
 
 	return newDrive;
 }
