@@ -6,13 +6,14 @@
 Drive initDrive(PantherMotor frontLeftMotor, PantherMotor frontRightMotor,
 		PantherMotor rearLeftMotor, PantherMotor rearRightMotor,
 		Encoder frontLeftEncoder, Encoder frontRightEncoder,
-		Encoder rearLeftEncoder, Encoder rearRightEncoder, Gyro gyro, int numEncoders)
+		Encoder rearLeftEncoder, Encoder rearRightEncoder, Gyro gyro, int numMotors,
+		int numEncoders)
 {
 	Drive newDrive = {frontLeftMotor, frontRightMotor,
 			rearLeftMotor, rearRightMotor,
 			frontLeftEncoder, frontRightEncoder,
 			rearLeftEncoder, rearRightEncoder,
-			gyro, numEncoders};
+			gyro, numEncoders, numMotors};
 
 	if(numEncoders == 2)
 	{
@@ -48,6 +49,13 @@ void tankDrive(Drive drive, int left, int right)
 
 	setPantherMotor(drive.frontLeftMotor, left);
 	setPantherMotor(drive.rearLeftMotor, left);
+
+	if(drive.numMotors == 6)
+	{
+		setPantherMotor(drive.middleLeftMotor, left);
+		setPantherMotor(drive.middleRightMotor, right);
+	}
+
 	setPantherMotor(drive.frontRightMotor, right);
 	setPantherMotor(drive.rearRightMotor, right);
 }
