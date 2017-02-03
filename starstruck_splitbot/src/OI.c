@@ -9,12 +9,12 @@
 
 int OIGetDriveLeft()
 {
-	return joystickGetAnalog(2, 3);
+	return joystickGetAnalog(1, 3);
 }
 
 int OIGetDriveRight()
 {
-	return joystickGetAnalog(2, 2);
+	return joystickGetAnalog(1, 2);
 }
 
 int OIGetDriveY()
@@ -29,15 +29,15 @@ int OIGetDriveX()
 
 int OIGetDriveMagnitude()
 {
-	return joystickGetAnalog(1, 3);
+	return joystickGetAnalog(2, 3);
 }
 
 int OIGetDriveDirection()
 {
-	return joystickGetAnalog(1, 4);
+	return joystickGetAnalog(2, 4);
 }
 
 int OIGetDriveRotation()
 {
-	return joystickGetAnalog(1, 1);
+	return joystickGetAnalog(2, 1);
 }
