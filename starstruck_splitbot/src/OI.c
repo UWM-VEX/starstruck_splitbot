@@ -41,3 +41,13 @@ int OIGetDriveRotation()
 {
 	return joystickGetAnalog(2, 1);
 }
+
+int OIGetDriveForward()
+{
+	return joystickGetDigital(1, 7, JOY_UP);
+}
+
+int OIGetDriveBackward()
+{
+	return joystickGetDigital(1, 7, JOY_DOWN);
+}

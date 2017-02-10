@@ -17,5 +17,7 @@ int OIGetDriveDirection();
 int OIGetDriveRotation();
 int OIGetDriveY();
 int OIGetDriveX();
+int OIGetDriveForward();
+int OIGetDriveBackward();
 
 #endif /* INCLUDE_OI_H_ */
