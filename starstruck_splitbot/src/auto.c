@@ -93,20 +93,41 @@ int globalTimeout;
 /**
  * Runs at the start of autonomous. Steps should be initialized here.
  */
-DriveToWPProperties *defaultProps;
+DriveToWPProperties *defaultBig;
+DriveToWPProperties *defaultSmall;
 // START OF DECLARATIONS
+
+DriveToWP * command1;
+DriveToWP * command2;
+DriveToWP * command3;
+
+DriveToWP * command4;
 
 // END OF DECLARATIONS
 
 void autonomousInit()
 {
-	defaultProps = initDriveToWPProperties(bigDrive,
+	defaultBig = initDriveToWPProperties(bigDrive,
+				0.5, 18, 500, 100, 40, // MAG
+				0.5, 18, 500, 100, 40, // DIR
+				2, 40, 70, 40, 4.25, 1, 500); //ROT
+	defaultSmall = initDriveToWPProperties(smallDrive,
 				0.5, 18, 500, 100, 30, // MAG
 				0.5, 18, 500, 100, 40, // DIR
 				2, 40, 70, 40, 4.25, 1, 500); //ROT
 	// START OF INSTANTIATIONS
 if(autonomousSelection == DO_NOTHING)
 {
+}
+if(autonomousSelection == BIG_TEST)
+{
+	command1 = initDriveToWP(defaultBig,24,0,0);
+	command2 = initDriveToWP(defaultBig,0,0,-90);
+	command3 = initDriveToWP(defaultBig,0,-24,0);
+}
+if(autonomousSelection == SMALL_TEST)
+{
+	command4 = initDriveToWP(defaultSmall,24,0,0);
 }
 	// END OF INSTANTIATIONS
 	/**
@@ -144,6 +165,46 @@ void autonomousPeriodic()
 		case(DO_NOTHING):
 		switch(autonomousInfo.step)
 		{
+
+
+			default:
+				isAuto = 0;
+				break;
+		}
+		break;
+		case(BIG_TEST):
+		switch(autonomousInfo.step)
+		{
+			case(1):
+				driveToWP(command1);
+
+				autonomousInfo.isFinished = (*command1).isFinished;
+				break;
+			case(2):
+				driveToWP(command2);
+
+				autonomousInfo.isFinished = (*command2).isFinished;
+				break;
+			case(3):
+				driveToWP(command3);
+
+				autonomousInfo.isFinished = (*command3).isFinished;
+				break;
+
+
+			default:
+				isAuto = 0;
+				break;
+		}
+		break;
+		case(SMALL_TEST):
+		switch(autonomousInfo.step)
+		{
+			case(1):
+				driveToWP(command4);
+
+				autonomousInfo.isFinished = (*command4).isFinished;
+				break;
 
 
 			default:

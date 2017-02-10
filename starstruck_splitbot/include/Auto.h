@@ -33,6 +33,8 @@ int alliance;
 
 // START OF MODES
 #define DO_NOTHING 0
+#define BIG_TEST 1
+#define SMALL_TEST 2
 // END OF MODES
 
 int autonomousSelection;

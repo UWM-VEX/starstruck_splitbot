@@ -2,4 +2,12 @@
 Splitbot
 ##
 Mode DO_NOTHING
-End Mode
+EndMode
+Mode BIG_TEST
+	driveToWP(defaultBig,24,0,0)
+	driveToWP(defaultBig,0,0,-90)
+	driveToWP(defaultBig,0,-24,0)
+EndMode
+Mode SMALL_TEST
+	driveToWP(defaultSmall,24,0,0)
+EndMode
