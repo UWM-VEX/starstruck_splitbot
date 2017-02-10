@@ -48,9 +48,11 @@
 #include "PantherMotor.h"
 #include "Utilities.h"
 #include "Drive.h"
+#include "Wall.h"
 #include "Robot.h"
 #include "Auto.h"
 #include "DriveToWP.h"
+#include "AutoWall.h"
 #include "Timeout.h"
 
 

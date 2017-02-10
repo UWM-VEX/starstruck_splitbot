@@ -42,6 +42,15 @@ void operatorControl()
 		holonomicDrive(bigDrive, OIGetDriveMagnitude(), OIGetDriveDirection(), OIGetDriveRotation());
 		tankDrive(smallDrive, OIGetDriveLeft(), OIGetDriveRight());
 
+		if(OIGetWallDeploy())
+		{
+			deployWall(bigWall);
+		}
+		else if(OIGetWallUndeploy())
+		{
+			undeployWall(bigWall);
+		}
+
 		delay(25);
 	}
 }

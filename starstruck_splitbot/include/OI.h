@@ -17,5 +17,7 @@ int OIGetDriveDirection();
 int OIGetDriveRotation();
 int OIGetDriveY();
 int OIGetDriveX();
+int OIGetWallDeploy();
+int OIGetWallUndeploy();
 
 #endif /* INCLUDE_OI_H_ */

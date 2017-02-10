@@ -41,3 +41,15 @@ int OIGetDriveRotation()
 {
 	return joystickGetAnalog(2, 1);
 }
+
+int OIGetWallDeploy()
+{
+	return joystickGetDigital(2, 5, JOY_UP) &&
+			joystickGetDigital(2, 6, JOY_UP);
+}
+
+int OIGetWallUndeploy()
+{
+	return joystickGetDigital(2, 5, JOY_DOWN) &&
+			joystickGetDigital(2, 6, JOY_DOWN);
+}

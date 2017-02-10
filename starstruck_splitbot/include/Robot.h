@@ -16,5 +16,6 @@
 
 Drive bigDrive;
 Drive smallDrive;
+Wall * bigWall;
 
 #endif /* INCLUDE_ROBOT_H_ */

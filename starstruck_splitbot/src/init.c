@@ -155,6 +155,7 @@ void lcdModeSelect()
   */
 void initializeIO() {
 	lcdInit(uart1);
+	bigWall = initWall(9,10);
 }
 
 /**
