@@ -42,6 +42,7 @@ int OIGetDriveRotation()
 	return joystickGetAnalog(2, 1);
 }
 
+
 int OIGetWallDeploy()
 {
 	return joystickGetDigital(2, 5, JOY_UP) &&
@@ -52,4 +53,14 @@ int OIGetWallUndeploy()
 {
 	return joystickGetDigital(2, 5, JOY_DOWN) &&
 			joystickGetDigital(2, 6, JOY_DOWN);
+}
+
+int OIGetDriveForward()
+{
+	return joystickGetDigital(1, 7, JOY_UP);
+}
+
+int OIGetDriveBackward()
+{
+	return joystickGetDigital(1, 7, JOY_DOWN);
 }

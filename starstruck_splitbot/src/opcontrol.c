@@ -40,7 +40,19 @@ void operatorControl()
 	while (true)
 	{
 		holonomicDrive(bigDrive, OIGetDriveMagnitude(), OIGetDriveDirection(), OIGetDriveRotation());
-		tankDrive(smallDrive, OIGetDriveLeft(), OIGetDriveRight());
+
+		if(OIGetDriveForward())
+		{
+			tankDrive(smallDrive, 127, 127);
+		}
+		else if(OIGetDriveBackward())
+		{
+			tankDrive(smallDrive, -127, -127);
+		}
+		else
+		{
+			tankDrive(smallDrive, OIGetDriveLeft(), OIGetDriveRight());
+		}
 
 		if(OIGetWallDeploy())
 		{

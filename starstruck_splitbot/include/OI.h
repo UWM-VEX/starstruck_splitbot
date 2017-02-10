@@ -19,5 +19,7 @@ int OIGetDriveY();
 int OIGetDriveX();
 int OIGetWallDeploy();
 int OIGetWallUndeploy();
+int OIGetDriveForward();
+int OIGetDriveBackward();
 
 #endif /* INCLUDE_OI_H_ */
