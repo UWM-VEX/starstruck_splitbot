@@ -65,17 +65,17 @@ void driveToWP(DriveToWP * step)
 		step->isFirstTime = 0;
 	}
 
-	//lcdPrint(uart1, 1, "FL: %d", encoderGet(step->properties->drive.leftEncoder));
-	//lcdPrint(uart1, 2, "FR: %d", encoderGet(step->properties->drive.rightEncoder));
+	//lcdPrint(uart1, 1, "l: %d", encoderGet(step->properties->drive.leftEncoder));
+	//lcdPrint(uart1, 2, "r: %d", encoderGet(step->properties->drive.rightEncoder));
 
 	double averageMagEncoder = ((double)((encoderGet(step->properties->drive.leftEncoder)
 			- step->firstLeftEncoder)
 			+ (encoderGet(step->properties->drive.rightEncoder)
 					- step->firstRightEncoder)) / 2);
 	double averageDirEncoder = ((double)((encoderGet(step->properties->drive.leftEncoder)
-				- step->firstLeftEncoder) -
+				- step->firstLeftEncoder)
 				- (encoderGet(step->properties->drive.rightEncoder)
-						- step->firstRightEncoder)) / 2);
+						- step->firstRightEncoder))) / 2;
 	double distancePV = encoderToInches(averageMagEncoder,
 			step->properties->wheelDiameter);
 	double directionPV = encoderToInches(averageDirEncoder,
@@ -157,12 +157,12 @@ void driveToWP(DriveToWP * step)
 
 		if(inDirectionDB || absDouble(step->direction) < step->properties->directionDB)
 		{
-			lcdSetText(uart1, 2, "Dir: DB");
+			//lcdSetText(uart1, 2, "Dir: DB");
 			direction = 0;
 		}
 		else if(absDouble(directionError) < step->properties->directionBreakingDistance)
 		{
-			lcdSetText(uart1, 2, "Dir: Break");
+			//lcdSetText(uart1, 2, "Dir: Break");
 			// slow down
 			// direction = (Vmax - Vmin)(SP - PV)/Breaking direction + Vmin
 			direction = (int) ((step->properties->directionMaxSpeed -
@@ -172,7 +172,7 @@ void driveToWP(DriveToWP * step)
 		}
 		else if(autonomousInfo.elapsedTime < step->properties->directionRampUpTime)
 		{
-			lcdSetText(uart1, 2, "Dir: Accel");
+			//lcdSetText(uart1, 2, "Dir: Accel");
 			// speed up
 			// direction = (Vmax - Vmin)*t/ramp up time + Vmin
 			direction = (int) ((step->properties->directionMaxSpeed -
@@ -182,7 +182,7 @@ void driveToWP(DriveToWP * step)
 		}
 		else
 		{
-			lcdSetText(uart1, 2, "Dir: Coast");
+			//lcdSetText(uart1, 2, "Dir: Coast");
 			// coast
 			direction = step->properties->directionMaxSpeed;
 		}
@@ -218,12 +218,12 @@ void driveToWP(DriveToWP * step)
 		// Check that we're at a good distance, if we're not, slowly move to a good distance
 		if(absDouble(distanceError) < step->properties->magnitudeDB)
 		{
-			//lcdSetText(uart1, 1, "Mag: Good");
+			lcdSetText(uart1, 1, "Mag: Good");
 			goodDistance = 1;
 		}
 		else
 		{
-			//lcdSetText(uart1, 1, "Mag: Adj");
+			lcdSetText(uart1, 1, "Mag: Adj");
 			magnitude = step->properties->magnitudeMinSpeed;
 		}
 
@@ -234,12 +234,12 @@ void driveToWP(DriveToWP * step)
 		if((absDouble(directionError) < step->properties->directionDB) ||
 				(absDouble(step->direction) < step->properties->directionDB))
 		{
-			lcdSetText(uart1, 2, "Dir: Good");
+			//lcdSetText(uart1, 2, "Dir: Good");
 			goodDirection = 1;
 		}
 		else
 		{
-			lcdSetText(uart1, 2, "Dir: Adj");
+			//lcdSetText(uart1, 2, "Dir: Adj");
 			direction = step->properties->directionMinSpeed;
 		}
 
@@ -293,7 +293,7 @@ void driveToWP(DriveToWP * step)
 				step->properties->rotationMinSpeed);
 	}
 
-	if(absDouble(step->distance) < 0.5)
+	if(absDouble(step->distance) < 0.5 && abs(step->rotation) < step->properties->rotationDB)
 	{
 		magnitude = 0;
 	}
@@ -319,7 +319,8 @@ void driveToWP(DriveToWP * step)
 	}
 
 	//lcdPrint(uart1, 1, "%f", directionPV);
-	lcdPrint(uart1, 1, "%f", directionError);
+	//lcdPrint(uart1, 1, "%f", directionError);
+	lcdPrint(uart1, 2, "Mag: %d", magnitude);
 
 	holonomicDrive(step->properties->drive, magnitude, direction, rotation);
 }

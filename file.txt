@@ -3,11 +3,23 @@ Splitbot
 ##
 Mode DO_NOTHING
 EndMode
+Mode MODE_1
+	{
+		driveToWP(defaultBig,42,0,0) ||
+		timeout(5000)
+	}
+	autoWall(bigWall,WALL_DEPLOY)
+	{
+		driveToWP(defaultBig,0,48,0) &&
+		driveToWP(defaultSmall,0,0,90)
+	}
+EndMode
 Mode BIG_TEST
-	driveToWP(defaultBig,24,0,0)
-	driveToWP(defaultBig,0,0,-90)
 	driveToWP(defaultBig,0,-24,0)
 EndMode
 Mode SMALL_TEST
 	driveToWP(defaultSmall,24,0,0)
+	driveToWP(defaultSmall,0,0,90)
+	driveToWP(defaultSmall,0,0,-90)
+	driveToWP(defaultSmall,-24,0,0)
 EndMode

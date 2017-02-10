@@ -14,4 +14,11 @@
 		<doneReference>.isFinished</doneReference>
 		<pointer>true</pointer>
 	</method>
+	<method>
+		<javaCommand>autoWall</javaCommand>
+		<declaration>AutoWall</declaration>
+		<instantiation>initAutoWall</instantiation>
+		<doneReference>.isFinished</doneReference>
+		<pointer>true</pointer>
+	</method>
 </methods>

@@ -98,10 +98,19 @@ DriveToWPProperties *defaultSmall;
 // START OF DECLARATIONS
 
 DriveToWP * command1;
-DriveToWP * command2;
-DriveToWP * command3;
+Timeout * command2;
 
+AutoWall * command3;
 DriveToWP * command4;
+DriveToWP * command5;
+
+
+DriveToWP * command6;
+
+DriveToWP * command7;
+DriveToWP * command8;
+DriveToWP * command9;
+DriveToWP * command10;
 
 // END OF DECLARATIONS
 
@@ -109,25 +118,36 @@ void autonomousInit()
 {
 	defaultBig = initDriveToWPProperties(bigDrive,
 				0.5, 18, 500, 100, 40, // MAG
-				0.5, 18, 500, 100, 40, // DIR
+				0.5, 18, 500, 100, 60, // DIR
 				2, 40, 70, 40, 4.25, 1, 500); //ROT
 	defaultSmall = initDriveToWPProperties(smallDrive,
 				0.5, 18, 500, 100, 30, // MAG
 				0.5, 18, 500, 100, 40, // DIR
-				2, 40, 70, 40, 4.25, 1, 500); //ROT
+				2, 40, 70, 25, 3.5, 1, 500); //ROT
 	// START OF INSTANTIATIONS
 if(autonomousSelection == DO_NOTHING)
 {
 }
+if(autonomousSelection == MODE_1)
+{
+	command1 = initDriveToWP(defaultBig,42,0,0);
+	command2 = initTimeout(5000);
+
+	command3 = initAutoWall(bigWall,WALL_DEPLOY);
+	command4 = initDriveToWP(defaultBig,0,48,0);
+	command5 = initDriveToWP(defaultSmall,0,0,90);
+
+}
 if(autonomousSelection == BIG_TEST)
 {
-	command1 = initDriveToWP(defaultBig,24,0,0);
-	command2 = initDriveToWP(defaultBig,0,0,-90);
-	command3 = initDriveToWP(defaultBig,0,-24,0);
+	command6 = initDriveToWP(defaultBig,0,-24,0);
 }
 if(autonomousSelection == SMALL_TEST)
 {
-	command4 = initDriveToWP(defaultSmall,24,0,0);
+	command7 = initDriveToWP(defaultSmall,24,0,0);
+	command8 = initDriveToWP(defaultSmall,0,0,90);
+	command9 = initDriveToWP(defaultSmall,0,0,-90);
+	command10 = initDriveToWP(defaultSmall,-24,0,0);
 }
 	// END OF INSTANTIATIONS
 	/**
@@ -172,23 +192,38 @@ void autonomousPeriodic()
 				break;
 		}
 		break;
-		case(BIG_TEST):
+		case(MODE_1):
 		switch(autonomousInfo.step)
 		{
 			case(1):
 				driveToWP(command1);
-
-				autonomousInfo.isFinished = (*command1).isFinished;
+				timeout(command2);
+				autonomousInfo.isFinished = (*command1).isFinished || (*command2).isFinished;
 				break;
 			case(2):
-				driveToWP(command2);
-
-				autonomousInfo.isFinished = (*command2).isFinished;
-				break;
-			case(3):
-				driveToWP(command3);
+				autoWall(command3);
 
 				autonomousInfo.isFinished = (*command3).isFinished;
+				break;
+			case(3):
+				driveToWP(command4);
+				driveToWP(command5);
+				autonomousInfo.isFinished = (*command4).isFinished && (*command5).isFinished;
+				break;
+
+
+			default:
+				isAuto = 0;
+				break;
+		}
+		break;
+		case(BIG_TEST):
+		switch(autonomousInfo.step)
+		{
+			case(1):
+				driveToWP(command6);
+
+				autonomousInfo.isFinished = (*command6).isFinished;
 				break;
 
 
@@ -201,9 +236,24 @@ void autonomousPeriodic()
 		switch(autonomousInfo.step)
 		{
 			case(1):
-				driveToWP(command4);
+				driveToWP(command7);
 
-				autonomousInfo.isFinished = (*command4).isFinished;
+				autonomousInfo.isFinished = (*command7).isFinished;
+				break;
+			case(2):
+				driveToWP(command8);
+
+				autonomousInfo.isFinished = (*command8).isFinished;
+				break;
+			case(3):
+				driveToWP(command9);
+
+				autonomousInfo.isFinished = (*command9).isFinished;
+				break;
+			case(4):
+				driveToWP(command10);
+
+				autonomousInfo.isFinished = (*command10).isFinished;
 				break;
 
 
