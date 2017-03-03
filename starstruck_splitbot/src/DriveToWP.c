@@ -72,10 +72,7 @@ void driveToWP(DriveToWP * step)
 			- step->firstLeftEncoder)
 			+ (encoderGet(step->properties->drive.rightEncoder)
 					- step->firstRightEncoder)) / 2);
-	double averageDirEncoder = ((double)((encoderGet(step->properties->drive.leftEncoder)
-				- step->firstLeftEncoder)
-				- (encoderGet(step->properties->drive.rightEncoder)
-						- step->firstRightEncoder))) / 2;
+	double averageDirEncoder = encoderGet(step->properties->drive.middleEncoder);
 	double distancePV = encoderToInches(averageMagEncoder,
 			step->properties->wheelDiameter);
 	double directionPV = encoderToInches(averageDirEncoder,
@@ -100,7 +97,7 @@ void driveToWP(DriveToWP * step)
 		step->reachedDistance = 1;
 	}
 
-	int inDirectionDB = (absDouble(directionError) < step->properties->directionDB);
+	int inDirectionDB = (absDouble(directionError) < step->properties->directionDB) || step->properties->drive.numEncoders == 2;
 
 	if(inDirectionDB)
 	{
@@ -155,7 +152,7 @@ void driveToWP(DriveToWP * step)
 			magnitude = step->properties->magnitudeMaxSpeed;
 		}
 
-		if(inDirectionDB || absDouble(step->direction) < step->properties->directionDB)
+		if(inDirectionDB || absDouble(step->direction) < step->properties->directionDB || step->properties->drive.numEncoders == 2)
 		{
 			//lcdSetText(uart1, 2, "Dir: DB");
 			direction = 0;
@@ -232,7 +229,8 @@ void driveToWP(DriveToWP * step)
 
 		// Check that we're at a good distance, if we're not, slowly move to a good distance
 		if((absDouble(directionError) < step->properties->directionDB) ||
-				(absDouble(step->direction) < step->properties->directionDB))
+				(absDouble(step->direction) < step->properties->directionDB) ||
+				step->properties->drive.numEncoders == 2)
 		{
 			//lcdSetText(uart1, 2, "Dir: Good");
 			goodDirection = 1;
@@ -322,5 +320,5 @@ void driveToWP(DriveToWP * step)
 	//lcdPrint(uart1, 1, "%f", directionError);
 	lcdPrint(uart1, 2, "Mag: %d", magnitude);
 
-	holonomicDrive(step->properties->drive, magnitude, direction, rotation);
+	hexDrive(step->properties->drive, magnitude, direction, rotation);
 }

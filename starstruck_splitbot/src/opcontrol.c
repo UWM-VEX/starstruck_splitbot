@@ -39,7 +39,7 @@ void operatorControl()
 
 	while (true)
 	{
-		holonomicDrive(bigDrive, OIGetDriveMagnitude(), OIGetDriveDirection(), OIGetDriveRotation());
+		hexDrive(bigDrive, OIGetDriveMagnitude(), OIGetDriveDirection(), OIGetDriveRotation());
 
 		if(OIGetDriveForward())
 		{
