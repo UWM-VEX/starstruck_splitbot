@@ -125,11 +125,38 @@ Timeout * command19;
 
 
 DriveToWP * command20;
+Timeout * command21;
 
-DriveToWP * command21;
 DriveToWP * command22;
 DriveToWP * command23;
-DriveToWP * command24;
+Timeout * command24;
+
+AutoWall * command25;
+DriveToWP * command26;
+DriveToWP * command27;
+Timeout * command28;
+
+DriveToWP * command29;
+DriveToWP * command30;
+Timeout * command31;
+
+DriveToWP * command32;
+DriveToWP * command33;
+Timeout * command34;
+
+DriveToWP * command35;
+Timeout * command36;
+
+DriveToWP * command37;
+Timeout * command38;
+
+
+DriveToWP * command39;
+
+DriveToWP * command40;
+DriveToWP * command41;
+DriveToWP * command42;
+DriveToWP * command43;
 
 // END OF DECLARATIONS
 
@@ -176,16 +203,45 @@ if(autonomousSelection == MODE_1)
 	command19 = initTimeout(3000);
 
 }
+if(autonomousSelection == MID_FAST)
+{
+	command20 = initDriveToWP(defaultBig,24,0,0);
+	command21 = initTimeout(5000);
+
+	command22 = initDriveToWP(defaultBig,24,-36,0);
+	command23 = initDriveToWP(defaultSmall,-6,0,0);
+	command24 = initTimeout(2000);
+
+	command25 = initAutoWall(bigWall,WALL_DEPLOY);
+	command26 = initDriveToWP(defaultBig,6,-12,0);
+	command27 = initDriveToWP(defaultSmall,10,0,0);
+	command28 = initTimeout(3000);
+
+	command29 = initDriveToWP(defaultBig,10, 0, 0);
+	command30 = initDriveToWP(defaultSmall, 0, 0, -75);
+	command31 = initTimeout(3000);
+
+	command32 = initDriveToWP(defaultBig, 20,0,0);
+	command33 = initDriveToWP(defaultSmall, 100, 0, 0);
+	command34 = initTimeout(5000);
+
+	command35 = initDriveToWP(defaultSmall, 0,0,90);
+	command36 = initTimeout(3000);
+
+	command37 = initDriveToWP(defaultSmall, 100,0,0);
+	command38 = initTimeout(3000);
+
+}
 if(autonomousSelection == BIG_TEST)
 {
-	command20 = initDriveToWP(defaultBig,0,-24,0);
+	command39 = initDriveToWP(defaultBig,0,-24,0);
 }
 if(autonomousSelection == SMALL_TEST)
 {
-	command21 = initDriveToWP(defaultSmall,24,0,0);
-	command22 = initDriveToWP(defaultSmall,0,0,90);
-	command23 = initDriveToWP(defaultSmall,0,0,-90);
-	command24 = initDriveToWP(defaultSmall,-24,0,0);
+	command40 = initDriveToWP(defaultSmall,24,0,0);
+	command41 = initDriveToWP(defaultSmall,0,0,90);
+	command42 = initDriveToWP(defaultSmall,0,0,-90);
+	command43 = initDriveToWP(defaultSmall,-24,0,0);
 }
 	// END OF INSTANTIATIONS
 	/**
@@ -284,13 +340,67 @@ void autonomousPeriodic()
 				break;
 		}
 		break;
-		case(BIG_TEST):
+		case(MID_FAST):
 		switch(autonomousInfo.step)
 		{
 			case(1):
 				driveToWP(command20);
+				timeout(command21);
+				autonomousInfo.isFinished = (*command20).isFinished || (*command21).isFinished;
+				break;
+			case(2):
+				driveToWP(command22);
+				driveToWP(command23);
+				timeout(command24);
+				autonomousInfo.isFinished = (*command22).isFinished && (*command23).isFinished || (*command24).isFinished;
+				break;
+			case(3):
+				autoWall(command25);
 
-				autonomousInfo.isFinished = (*command20).isFinished;
+				autonomousInfo.isFinished = (*command25).isFinished;
+				break;
+			case(4):
+				driveToWP(command26);
+				driveToWP(command27);
+				timeout(command28);
+				autonomousInfo.isFinished = (*command26).isFinished && (*command27).isFinished || (*command28).isFinished;
+				break;
+			case(5):
+				driveToWP(command29);
+				driveToWP(command30);
+				timeout(command31);
+				autonomousInfo.isFinished = (*command29).isFinished && (*command30).isFinished || (*command31).isFinished;
+				break;
+			case(6):
+				driveToWP(command32);
+				driveToWP(command33);
+				timeout(command34);
+				autonomousInfo.isFinished = (*command32).isFinished && (*command33).isFinished || (*command34).isFinished;
+				break;
+			case(7):
+				driveToWP(command35);
+				timeout(command36);
+				autonomousInfo.isFinished = (*command35).isFinished || (*command36).isFinished;
+				break;
+			case(8):
+				driveToWP(command37);
+				timeout(command38);
+				autonomousInfo.isFinished = (*command37).isFinished || (*command38).isFinished;
+				break;
+
+
+			default:
+				isAuto = 0;
+				break;
+		}
+		break;
+		case(BIG_TEST):
+		switch(autonomousInfo.step)
+		{
+			case(1):
+				driveToWP(command39);
+
+				autonomousInfo.isFinished = (*command39).isFinished;
 				break;
 
 
@@ -303,24 +413,24 @@ void autonomousPeriodic()
 		switch(autonomousInfo.step)
 		{
 			case(1):
-				driveToWP(command21);
+				driveToWP(command40);
 
-				autonomousInfo.isFinished = (*command21).isFinished;
+				autonomousInfo.isFinished = (*command40).isFinished;
 				break;
 			case(2):
-				driveToWP(command22);
+				driveToWP(command41);
 
-				autonomousInfo.isFinished = (*command22).isFinished;
+				autonomousInfo.isFinished = (*command41).isFinished;
 				break;
 			case(3):
-				driveToWP(command23);
+				driveToWP(command42);
 
-				autonomousInfo.isFinished = (*command23).isFinished;
+				autonomousInfo.isFinished = (*command42).isFinished;
 				break;
 			case(4):
-				driveToWP(command24);
+				driveToWP(command43);
 
-				autonomousInfo.isFinished = (*command24).isFinished;
+				autonomousInfo.isFinished = (*command43).isFinished;
 				break;
 
 
