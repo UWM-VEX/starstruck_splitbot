@@ -15,12 +15,12 @@
  */
 struct Drive{
 
-	PantherMotor frontLeftMotor;
-	PantherMotor frontRightMotor;
-	PantherMotor middleLeftMotor;
-	PantherMotor middleRightMotor;
-	PantherMotor rearLeftMotor;
-	PantherMotor rearRightMotor;
+	SmartMotor* frontLeftMotor;
+	SmartMotor* frontRightMotor;
+	SmartMotor* middleLeftMotor;
+	SmartMotor* middleRightMotor;
+	SmartMotor* rearLeftMotor;
+	SmartMotor* rearRightMotor;
 	Encoder leftEncoder;
 	Encoder rightEncoder;
 	Encoder middleEncoder;
@@ -29,9 +29,9 @@ struct Drive{
 
 }typedef Drive;
 
-Drive initDrive(PantherMotor frontLeftMotor, PantherMotor frontRightMotor,
-		PantherMotor middleLeftMotor, PantherMotor middleRightMotor,
-		PantherMotor rearLeftMotor, PantherMotor rearRightMotor,
+Drive initDrive(SmartMotor* frontLeftMotor, SmartMotor* frontRightMotor,
+		SmartMotor* middleLeftMotor, SmartMotor* middleRightMotor,
+		SmartMotor* rearLeftMotor, SmartMotor* rearRightMotor,
 		Encoder leftEncoder, Encoder middleEncoder, Encoder rightEncoder, Gyro gyro, int numEncoders);
 void hexDrive(Drive drive, int magnitude, int direction, int rotation);
 void tankDrive(Drive drive, int left, int right);

@@ -12,6 +12,7 @@
 #define PI 3.14159265359
 
 int limit(int, int, int);
+double limitDouble(double num, double max, double min);
 int abs(int);
 int inDeadBand(int realNum, int desiredNum, int deadBand);
 double encoderToInches(double encoderLines, double wheelDiameter);

@@ -3,9 +3,9 @@
 /**
  * Initializes a new drive object composed of six PantherMotors, two encoders and a gyro.
  */
-Drive initDrive(PantherMotor frontLeftMotor, PantherMotor frontRightMotor,
-		PantherMotor middleLeftMotor, PantherMotor middleRightMotor,
-		PantherMotor rearLeftMotor, PantherMotor rearRightMotor,
+Drive initDrive(SmartMotor* frontLeftMotor, SmartMotor* frontRightMotor,
+		SmartMotor* middleLeftMotor, SmartMotor* middleRightMotor,
+		SmartMotor* rearLeftMotor, SmartMotor* rearRightMotor,
 		Encoder leftEncoder, Encoder middleEncoder, Encoder rightEncoder, Gyro gyro, int numEncoders)
 {
 	Drive newDrive = {frontLeftMotor, frontRightMotor,
@@ -29,10 +29,10 @@ void hexDrive(Drive drive, int magnitude, int direction, int rotation)
 	rearLeft = limit(rearLeft, 127, -127);
 	rearRight = limit(rearRight, 127, -127);
 
-	setPantherMotor(drive.frontLeftMotor, frontLeft);
-	setPantherMotor(drive.frontRightMotor, -frontRight);
-	setPantherMotor(drive.rearLeftMotor, rearLeft);
-	setPantherMotor(drive.rearRightMotor, -rearRight);
+	setSmartMotor(drive.frontLeftMotor, frontLeft);
+	setSmartMotor(drive.frontRightMotor, -frontRight);
+	setSmartMotor(drive.rearLeftMotor, rearLeft);
+	setSmartMotor(drive.rearRightMotor, -rearRight);
 
 	double speedRatio = (100/160) * (24/18);
 	double sin45 = 0.70710678118;
@@ -48,8 +48,8 @@ void hexDrive(Drive drive, int magnitude, int direction, int rotation)
 		hSpeed = 0;
 	}
 
-	setPantherMotor(drive.middleLeftMotor, hSpeed);
-	setPantherMotor(drive.middleRightMotor, hSpeed);
+	setSmartMotor(drive.middleLeftMotor, hSpeed);
+	setSmartMotor(drive.middleRightMotor, hSpeed);
 }
 
 void tankDrive(Drive drive, int left, int right)
@@ -57,10 +57,10 @@ void tankDrive(Drive drive, int left, int right)
 	left = limit(left, 127, -127);
 	right = limit(right, 127, -127);
 
-	setPantherMotor(drive.frontLeftMotor, left);
-	setPantherMotor(drive.rearLeftMotor, left);
-	setPantherMotor(drive.frontRightMotor, right);
-	setPantherMotor(drive.rearRightMotor, right);
+	setSmartMotor(drive.frontLeftMotor, left);
+	setSmartMotor(drive.rearLeftMotor, left);
+	setSmartMotor(drive.frontRightMotor, right);
+	setSmartMotor(drive.rearRightMotor, right);
 }
 
 void arcadeDrive(Drive drive, int magnitude, int rotation)
