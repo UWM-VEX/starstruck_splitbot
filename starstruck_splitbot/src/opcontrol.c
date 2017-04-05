@@ -39,7 +39,18 @@ void operatorControl()
 
 	while (true)
 	{
-		hexDrive(bigDrive, OIGetDriveMagnitude(), OIGetDriveDirection(), OIGetDriveRotation());
+		if(OIGetBigBotForwardOnly())
+		{
+			arcadeDrive(bigDrive, 127, 0);
+		}
+		else if(OIGetBigBotBackwardOnly())
+		{
+			arcadeDrive(bigDrive, -127, 0);
+		}
+		else
+		{
+			tankDrive(bigDrive, OIGetBigDriveLeft(), OIGetBigDriveRight());
+		}
 
 		if(OIGetDriveForward())
 		{
@@ -51,7 +62,7 @@ void operatorControl()
 		}
 		else
 		{
-			tankDrive(smallDrive, OIGetDriveLeft(), OIGetDriveRight());
+			tankDrive(smallDrive, OIGetSmallDriveLeft(), OIGetSmallDriveRight());
 		}
 
 		if(OIGetWallDeploy())

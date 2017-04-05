@@ -53,7 +53,7 @@ void lcdModeSelect()
 	int newButtonPressed;
 	int lastStep = 0;
 
-	const char * selectionText[] = {"DO_NOTHING", "MODE_1", "MID_FAST", "BIG_TEST", "SMALL_TEST"}; // MODE DEFINITIONS
+	const char * selectionText[] = {"DO_NOTHING", "BIG_TEST", "SMALL_TEST"}; // MODE DEFINITIONS
 	int size = sizeof(selectionText) / sizeof(int);
 
 	autonomousSelection = 0;
@@ -169,14 +169,14 @@ void initializeIO() {
  */
 
 void initialize() {
-	bigDrive = initDrive(initSmartMotor(1,1,250), initSmartMotor(10,1,250),
-						initSmartMotor(5,0,250), initSmartMotor(6,0,250),
-						initSmartMotor(2,1,250), initSmartMotor(9,0,250),
-						encoderInit(1, 2, 0), encoderInit(5,6,0), encoderInit(3,4,1), gyroInit(1, 0), 3);
+	bigDrive = initDrive(initSmartMotor(1,1,500), initSmartMotor(10,1,500),
+						initSmartMotor(5,0,500), initSmartMotor(6,0,500),
+						initSmartMotor(2,0,500), initSmartMotor(9,0,500),
+						encoderInit(1, 2, 0), encoderInit(5,6,0), gyroInit(1, 0));
 	smallDrive = initDrive(initSmartMotor(8,0,250), initSmartMotor(4,1,250),
-							initSmartMotor(-1,1,250), initSmartMotor(-1,0,250),
-							initSmartMotor(7,1,250), initSmartMotor(3,0,250),
-							encoderInit(7, 8, 1), encoderInit(0,0,0), encoderInit(11,12,0), gyroInit(2, 0), 2);
+						initSmartMotor(-1,1,250), initSmartMotor(-1,0,250),
+						initSmartMotor(7,1,250), initSmartMotor(3,0,250),
+						encoderInit(7, 8, 1), encoderInit(11,12,0), gyroInit(2, 0));
 
 	lcdModeSelect();
 

@@ -7,14 +7,24 @@
 
 #include "main.h"
 
-int OIGetDriveLeft()
+int OIGetSmallDriveLeft()
 {
 	return joystickGetAnalog(1, 3);
 }
 
-int OIGetDriveRight()
+int OIGetSmallDriveRight()
 {
 	return joystickGetAnalog(1, 2);
+}
+
+int OIGetBigDriveLeft()
+{
+	return joystickGetAnalog(2, 3);
+}
+
+int OIGetBigDriveRight()
+{
+	return joystickGetAnalog(2, 2);
 }
 
 int OIGetDriveY()
@@ -26,22 +36,6 @@ int OIGetDriveX()
 {
 	return joystickGetAnalog(1, 4);
 }
-
-int OIGetDriveMagnitude()
-{
-	return joystickGetAnalog(2, 3);
-}
-
-int OIGetDriveDirection()
-{
-	return joystickGetAnalog(2, 4);
-}
-
-int OIGetDriveRotation()
-{
-	return joystickGetAnalog(2, 1);
-}
-
 
 int OIGetWallDeploy()
 {
@@ -63,4 +57,14 @@ int OIGetDriveForward()
 int OIGetDriveBackward()
 {
 	return joystickGetDigital(1, 7, JOY_DOWN);
+}
+
+int OIGetBigBotForwardOnly()
+{
+	return joystickGetDigital(2, 7, JOY_UP);
+}
+
+int OIGetBigBotBackwardOnly()
+{
+	return joystickGetDigital(2, 7, JOY_DOWN);
 }

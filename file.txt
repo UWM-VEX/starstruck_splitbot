@@ -3,82 +3,12 @@ Splitbot
 ##
 Mode DO_NOTHING
 EndMode
-Mode MODE_1
-	{
-		driveToWP(defaultBig,52,0,0) ||
-		timeout(5000)
-	}
-	autoWall(bigWall,WALL_DEPLOY)
-	{
-		driveToWP(defaultBig,-10,0,0) &&
-		driveToWP(defaultSmall,-6,0,0) ||
-		timeout(2000)
-	}
-	{
-		driveToWP(defaultBig,0,-42,0) &&
-		driveToWP(defaultSmall,10,0,0)||
-		timeout(3000)
-	}
-	{
-		driveToWP(defaultBig,10, 0, 0) &&
-		driveToWP(defaultSmall, 0, 0, -90)||
-		timeout(3000)
-	}
-	{
-		driveToWP(defaultBig, 20,0,0) &&
-		driveToWP(defaultSmall, 100, 0, 0)||
-		timeout(5000)
-	}	
-	{
-		driveToWP(defaultSmall, 0,0,90)||
-		timeout(3000)
-	}
-	{
-		driveToWP(defaultSmall, 100,0,0)||
-		timeout(3000)
-	}
-EndMode
-Mode MID_FAST
-	{
-		driveToWP(defaultBig,24,0,0) ||
-		timeout(5000)
-	}
-	{
-		driveToWP(defaultBig,24,-36,0) &&
-		driveToWP(defaultSmall,-6,0,0) ||
-		timeout(2000)
-	}
-	autoWall(bigWall,WALL_DEPLOY)
-	{
-		driveToWP(defaultBig,6,-12,0) &&
-		driveToWP(defaultSmall,10,0,0)||
-		timeout(3000)
-	}
-	{
-		driveToWP(defaultBig,10, 0, 0) &&
-		driveToWP(defaultSmall, 0, 0, -75)||
-		timeout(3000)
-	}
-	{
-		driveToWP(defaultBig, 20,0,0) &&
-		driveToWP(defaultSmall, 100, 0, 0)||
-		timeout(5000)
-	}	
-	{
-		driveToWP(defaultSmall, 0,0,90)||
-		timeout(3000)
-	}
-	{
-		driveToWP(defaultSmall, 100,0,0)||
-		timeout(3000)
-	}
-EndMode
 Mode BIG_TEST
-	driveToWP(defaultBig,0,-24,0)
+	driveToWP(defaultBig,24,0)
 EndMode
 Mode SMALL_TEST
-	driveToWP(defaultSmall,24,0,0)
-	driveToWP(defaultSmall,0,0,90)
-	driveToWP(defaultSmall,0,0,-90)
-	driveToWP(defaultSmall,-24,0,0)
+	driveToWP(defaultSmall,24,0)
+	driveToWP(defaultSmall,0,90)
+	driveToWP(defaultSmall,0,-90)
+	driveToWP(defaultSmall,-24,0)
 EndMode
