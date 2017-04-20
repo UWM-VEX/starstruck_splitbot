@@ -169,13 +169,13 @@ void initializeIO() {
  */
 
 void initialize() {
-	bigDrive = initDrive(initSmartMotor(1,1,500), initSmartMotor(10,1,500),
-						initSmartMotor(5,0,500), initSmartMotor(6,0,500),
-						initSmartMotor(2,0,500), initSmartMotor(9,0,500),
-						encoderInit(1, 2, 0), encoderInit(5,6,0), gyroInit(1, 0));
-	smallDrive = initDrive(initSmartMotor(8,0,250), initSmartMotor(4,1,250),
-						initSmartMotor(-1,1,250), initSmartMotor(-1,0,250),
-						initSmartMotor(7,1,250), initSmartMotor(3,0,250),
+	bigDrive = initDrive(initSmartMotor(10,0,5), initSmartMotor(1,0,5),
+						initSmartMotor(6,0,5), initSmartMotor(5,1,5),
+						initSmartMotor(9,0,5), initSmartMotor(2,1,5),
+						encoderInit(5, 6, 0), encoderInit(1,2,0), gyroInit(1, 0));
+	smallDrive = initDrive(initSmartMotor(8,0,5), initSmartMotor(4,1,5),
+						initSmartMotor(-1,1,5), initSmartMotor(-1,0,5),
+						initSmartMotor(7,1,5), initSmartMotor(3,0,5),
 						encoderInit(7, 8, 1), encoderInit(11,12,0), gyroInit(2, 0));
 
 	lcdModeSelect();
